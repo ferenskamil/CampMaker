@@ -3,6 +3,7 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
+{% include "_nav.html.twig" %}
 <style>
     .example-wrapper {
         margin: 1em auto;
@@ -10,28 +11,16 @@
         width: 95%;
         font: 18px/1.5 sans-serif;
     }
-
-    .example-wrapper code {
-        background: #F5F5F5;
-        padding: 2px 6px;
-    }
 </style>
-
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
+    <h1>Wszystko w jednym miejscu dla organizatorów wycieczek</h1>
     <ul>
-        <li>Your controller at
-            <code><a href="{{ 'C:/xampp/htdocs/CampMaker/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code>
-        </li>
-        <li>Your template at
-            <code><a href="{{ 'C:/xampp/htdocs/CampMaker/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code>
-        </li>
+        <li>Osobnr konta dla kierownika, opiekuna, uczestnika</li>
+        <li>Umowy i dokumenty generowane 1 kliknięciem</li>
+        <li>Planowanie harmonogramu</li>
+        <li>Automatyczny mailing</li>
+        <li>Raport po zakończonym wydarzeniu</li>
     </ul>
-</div>
-
-<div class="alert alert-warning" role="alert">
-    Bootstrap działa
+    <a href="#"><button class="btn btn-primary">Sprawdź już teraz!</button></a>
 </div>
 {% endblock %}
