@@ -11,7 +11,6 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-
         /** Prepare events fixtures */
         $eventsData = $this->getEventsData();
         foreach ($eventsData as $event) {

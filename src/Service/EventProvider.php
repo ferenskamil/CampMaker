@@ -28,7 +28,7 @@ class EventProvider
     public function prepareEvent(Event $event, bool $shortenDescription = false) : array
     {
         $description = $event->getDescription();
-        if ($shortenDescription) $description = substr($description, 0, 300) . "...";
+        if ($shortenDescription) $description = substr($description, 0, 297) . "...";
 
         return [
             'title' => $event->getTitle(),
