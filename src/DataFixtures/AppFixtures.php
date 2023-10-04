@@ -21,7 +21,8 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    private function prepareEvent(array $eventData) : Event {
+    private function prepareEvent(array $eventData) : Event
+    {
         $event = new Event();
         $event->setTitle($eventData['title']);
         $event->setTermFrom($eventData['termFrom']);
@@ -33,7 +34,8 @@ class AppFixtures extends Fixture
         return $event;
     }
 
-    private function getEventsData() : array {
+    private function getEventsData() : array
+    {
         return [
             [
                 'title' => 'To moje pierwsze wakacje',
