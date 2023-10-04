@@ -31,6 +31,7 @@ class EventProvider
         if ($shortenDescription) $description = substr($description, 0, 297) . "...";
 
         return [
+            'id' => $event->getId(),
             'title' => $event->getTitle(),
             'termFrom' => $event->getTermFrom()->format("Y-m-d"),
             'termTo' => $event->getTermTo()->format("Y-m-d"),

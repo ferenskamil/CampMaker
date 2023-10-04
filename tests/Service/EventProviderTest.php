@@ -33,6 +33,7 @@ final class EventProviderTest extends TestCase
         $resultEvents = $eventProvider->getPreparedAllEvents();
         foreach ($resultEvents as $event) {
             $this->assertIsArray($event);
+            $this->assertArrayHasKey('id', $event);
             $this->assertArrayHasKey('title', $event);
             $this->assertArrayHasKey('termFrom', $event);
             $this->assertArrayHasKey('termTo', $event);
@@ -69,6 +70,7 @@ final class EventProviderTest extends TestCase
     public function createEventMock() : Event
     {
         $event = $this->createMock(Event::class);
+        $event->expects($this->once())->method('getId')->willReturn(2);
         $event->expects($this->once())->method('getTitle')->willReturn('John Doe');
         $event->expects($this->once())->method('getTermFrom')->willReturn(new DateTime("2023-01-02"));
         $event->expects($this->once())->method('getTermTo')->willReturn(new DateTime("2023-01-10"));
