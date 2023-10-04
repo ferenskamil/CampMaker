@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wydarzenia | CampMaker.pl{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Wydarzenia</h2>
+    <hr>
+    {% for event in events %}
+    <h3>{{ event.title }}</h3>
+    <div class="d-flex">
+        <p style="font-size: 0.8rem;"><strong>Data: </strong>{{ event.termFrom }} - {{ event.termTo}} &nbsp</p>
+        <p style="font-size: 0.8rem;"><strong>Miejsce: </strong>{{ event.locality}} &nbsp</p>
+        <p style="font-size: 0.8rem;"><strong>Cena: </strong>{{ event.price }}zł</p>
+    </div>
+    <p>{{ event.description }}</p>
+    {% endfor %}
+</div>
+{% endblock %}
