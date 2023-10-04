@@ -3,10 +3,12 @@
 App to facilitate organised trips for children.
 
 ## List of contents:
+
 1.  Current phase
 2.  Assumptions for implementation
 
 ## Current phase
+
 1.  Environment and database configuration
 2.  Home page (customer benefits)
 3.  List of registered events
@@ -41,6 +43,7 @@ App to facilitate organised trips for children.
 **Other packages:**
 
 -   var_dumper
+-   profiler
 
 ### Frontend
 
@@ -48,4 +51,3 @@ App to facilitate organised trips for children.
 -   JavaScript (ES Modules)
 -   Scss
 -   Webpack
-
