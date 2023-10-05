@@ -28,4 +28,10 @@ class LoginController extends AbstractController
             'error' => $error
         ]);
     }
+
+    #[Route('/logout', name: 'logout')]
+    public function logout() : void
+    {
+        // Logut for this route is configured in security.yaml
+    }
 }
