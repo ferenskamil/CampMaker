@@ -5,6 +5,7 @@
 {% block body %}
 <div class="d-flex justify-content-center" style="margin-top: 6rem;">
     <form action="{{ path('login') }}" method="post" class="d-flex flex-column col-3">
+        <h1>Zaloguj się</h1>
         <label for="username" class="pt-2">Email:</label>
         <input type="text" id="username" name="_username" value="{{ last_username }}">
 

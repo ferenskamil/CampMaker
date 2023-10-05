@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-center" style="margin-top: 6rem;">
+    <div class="d-flex flex-column col-3">
+
+        <h1>Zarejestruj się</h1>
+
+        {{ form_start(registrationForm, { 'attr': {'class': 'd-flex flex-column col-3'} }) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+        label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn btn-primary">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
+</div>
+{% endblock %}
