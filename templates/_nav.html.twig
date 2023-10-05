@@ -1,11 +1,16 @@
-<nav class="nav container justify-content-between">
+<nav class="nav container justify-content-between pt-2">
     <div>
         <a class="nav-link active fs-4" aria-current="page" href="{{ path('home')}}">CampMaker</a>
     </div>
-    <div class="d-flex">
+    <div class="d-flex align-items-center">
         <a class="nav-link fs-4" href="{{ path('events') }}">Wydarzenia</a>
+        {% if is_granted("ROLE_USER")%}
+        <a class="nav-link fs-4" href="{{ path('logout') }}">wyloguj się</a>
+        <a href="{{ path('home') }}" class="btn btn-primary" style="margin: auto">
+                Aplikacja </a>
+        {% else %}
         <a class="nav-link fs-4" href="{{ path('login') }}">Zaloguj się</a>
         <a class="nav-link fs-4" href="{{ path('register')}}">Zarejestruj się</a>
-        {# <a class="nav-link disabled" aria-disabled="true">Disabled</a> #}
+        {% endif %}
     </div>
 </nav>
