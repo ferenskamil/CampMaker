@@ -11,6 +11,15 @@
         font: 18px/1.5 sans-serif;
     }
 </style>
+{% if is_granted("ROLE_USER")%}
+<div class="example-wrapper">
+    <h1>Witaj w aplikacji</h1>
+    <ul>
+        <li>{{ app.user.email }}</li>
+        <li>{{ app.user.roles|join(', ') }}</li>
+    </ul>
+</div>
+{% endif %}
 <div class="example-wrapper">
     <h1>Wszystko w jednym miejscu dla organizatorów wycieczek</h1>
     <ul>

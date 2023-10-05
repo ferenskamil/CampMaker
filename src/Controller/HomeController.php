@@ -11,8 +11,14 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(): Response
     {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
+
+        // $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
+
+        $params = [
+            'email' => 'mr.kaam@gmail.com',
+            'role' => 'BASIC_ROLE'
+        ];
+
+        return $this->render('home/index.html.twig', $params);
     }
 }
