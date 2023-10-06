@@ -11,30 +11,17 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager) : void
     {
+        global $adminFixture;
+
         /**Users */
         $userFixture = new UserFixture ;
         foreach ($userFixture->getUsersFixtures() as $user) {
             /** @var \App\Entity\User $user */
-
-
-            /****/
-
-            /** Organizers */
-            $organizerFixture = new OrganizerFixture;
-
-            /** @var \App\Entity\User $relatedUser */
-            $relatedUser = $user;
-
-            foreach ($organizerFixture->getOrganizersFixtures($relatedUser) as $organizer) {
-                /** @var \App\Entity\Organizer $organizer */
-                $relatedUser->setOrganizer($organizer);
-
-                $manager->persist($organizer);
-            }
-
-            /**** */
-            $user->setOrganizer($organizer);
             $manager->persist($user);
+
+            if ($user->getEmail() === 'admin@admin.com') {
+                $adminFixture = $user;
+            };
         }
 
         /** Events */
@@ -44,18 +31,13 @@ class AppFixtures extends Fixture
             $manager->persist($event);
         }
 
-        // /** Organizers */
-        // $organizerFixture = new OrganizerFixture;
-
-        // /** @var \App\Entity\User $relatedUser */
-        // $relatedUser = (new UserFixture())->getUsersFixtures()[0];
-
-        // foreach ($organizerFixture->getOrganizersFixtures($relatedUser) as $organizer) {
-        //     /** @var \App\Entity\Organizer $organizer */
-        //     $relatedUser->setOrganizer($organizer);
-
-        //     $manager->persist($organizer);
-        // }
+        /** Organizers */
+        $organizerFixture = new OrganizerFixture;
+        foreach ($organizerFixture->getOrganizersFixtures() as $organizer) {
+            /** @var \App\Entity\Organizer $organizer */
+            $adminFixture->setOrganizer($organizer);
+            $manager->persist($organizer);
+        }
 
         /**Flush */
         $manager->flush();

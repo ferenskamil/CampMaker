@@ -7,12 +7,11 @@ use App\Entity\User;
 
 class OrganizerFixture
 {
-    public function getOrganizersFixtures(User $user) : array
+    public function getOrganizersFixtures() : array
     {
         $organizersArrOfEntities = [];
         foreach ($this->getOrganizersData() as $data) {
             $organizer = new Organizer();
-            // $organizer->setUser($user);
             $organizer->setFullName($data['full_name']);
             $organizer->setShortName($data['short_name']);
             $organizer->setAddress1($data['address1']);
