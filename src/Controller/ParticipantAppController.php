@@ -24,4 +24,11 @@ class ParticipantAppController extends AbstractController
     {
         return $this->render('participant_app/event.html.twig');
     }
+
+    // #[Route('/uczestnik/{id}/ustawienia', name: 'app_participant_settings')]
+    #[Route('/uczestnik/ustawienia', name: 'app_participant_settings')]
+    public function settings() : Response
+    {
+        return $this->render('participant_app/settings.html.twig');
+    }
 }
