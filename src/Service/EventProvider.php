@@ -4,11 +4,13 @@ namespace App\Service;
 
 use App\Entity\Event;
 use App\Repository\EventRepository;
+use App\Repository\OrganizerRepository;
 
 class EventProvider
 {
     public function __construct(
-        private EventRepository $eventRepository
+        private EventRepository $eventRepository,
+        private OrganizerRepository $organizerRepository
     )
     {
     }
@@ -30,6 +32,10 @@ class EventProvider
         $description = $event->getDescription();
         if ($shortenDescription) $description = substr($description, 0, 297) . "...";
 
+        /** @var OrganizerRepository $organizerRepository*/
+        $organizerId = $event->getOrganizer()->getId();
+        $organizer = $this->organizerRepository->find($organizerId);
+
         return [
             'id' => $event->getId(),
             'title' => $event->getTitle(),
@@ -37,7 +43,8 @@ class EventProvider
             'termTo' => $event->getTermTo()->format("Y-m-d"),
             'locality' => $event->getLocality(),
             'price' => $event->getPrice(),
-            'description' => $description
+            'description' => $description,
+            'organizerName' => $organizer->getFullName()
         ];
     }
 }

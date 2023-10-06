@@ -12,6 +12,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager) : void
     {
         global $adminFixture;
+        global $exampleOrganizer;
 
         /**Users */
         $userFixture = new UserFixture ;
@@ -24,13 +25,6 @@ class AppFixtures extends Fixture
             };
         }
 
-        /** Events */
-        $eventFixture = new EventFixture();
-        foreach ($eventFixture->getEventsFixtures() as $event) {
-            /** @var \Event $event  */
-            $manager->persist($event);
-        }
-
         /** Organizers */
         $organizerFixture = new OrganizerFixture;
         foreach ($organizerFixture->getOrganizersFixtures() as $organizer) {
@@ -38,6 +32,17 @@ class AppFixtures extends Fixture
             $adminFixture->setOrganizer($organizer);
             $adminFixture->setRoles(['ROLE_ORGANIZER']);
             $manager->persist($organizer);
+
+            /** Set global value for future use */
+            $exampleOrganizer = $organizer;
+        }
+
+        /** Events */
+        $eventFixture = new EventFixture();
+        foreach ($eventFixture->getEventsFixtures() as $event) {
+            /** @var \App\Entity\Event $event  */
+            $event->setOrganizer($exampleOrganizer);
+            $manager->persist($event);
         }
 
         /**Flush */
