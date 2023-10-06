@@ -43,7 +43,7 @@ class Organizer
     #[ORM\Column(length: 50)]
     private ?string $ownerSurname = null;
 
-    #[ORM\OneToMany(mappedBy: 'organizer', targetEntity: Event::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'organizer', targetEntity: Event::class)]
     private Collection $events;
 
     public function __construct()

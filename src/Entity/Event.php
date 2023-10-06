@@ -33,7 +33,6 @@ class Event
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Organizer $organizer = null;
 
     public function getId(): ?int
