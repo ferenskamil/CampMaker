@@ -21,10 +21,10 @@ class AppFixtures extends Fixture
 
         /** Events*/
         $eventFixture = new EventFixture();
-        $eventsData = $eventFixture->getEventsData();
-        foreach ($eventsData as $event) {
-           $event = $eventFixture->prepareEvent($event);
-           $manager->persist($event);
+        $eventsFixtures = $eventFixture->getEventsFixtures();
+        foreach ($eventsFixtures as $event) {
+            /** @var \Event $event  */
+            $manager->persist($event);
         }
 
 

@@ -6,17 +6,24 @@ use DateTime;
 
 class EventFixture
 {
-    public function prepareEvent(array $eventData) : Event
+    public function getEventsFixtures() : array
     {
-        $event = new Event();
-        $event->setTitle($eventData['title']);
-        $event->setTermFrom($eventData['termFrom']);
-        $event->setTermTo($eventData['termTo']);
-        $event->setLocality($eventData['locality']);
-        $event->setPrice($eventData['price']);
-        $event->setDescription($eventData['description']);
+        $eventsData = $this->getEventsData();
 
-        return $event;
+        $eventsArrOfEntities = [];
+        foreach ($eventsData as $data) {
+            $event = new Event();
+            $event->setTitle($data['title']);
+            $event->setTermFrom($data['termFrom']);
+            $event->setTermTo($data['termTo']);
+            $event->setLocality($data['locality']);
+            $event->setPrice($data['price']);
+            $event->setDescription($data['description']);
+
+            $eventsArrOfEntities[] = $event;
+        }
+
+        return $eventsArrOfEntities;
     }
 
     public function getEventsData() : array
