@@ -14,16 +14,48 @@ class AppFixtures extends Fixture
         /**Users */
         $userFixture = new UserFixture ;
         foreach ($userFixture->getUsersFixtures() as $user) {
-            /** @var \User $user */
+            /** @var \App\Entity\User $user */
+
+
+            /****/
+
+            /** Organizers */
+            $organizerFixture = new OrganizerFixture;
+
+            /** @var \App\Entity\User $relatedUser */
+            $relatedUser = $user;
+
+            foreach ($organizerFixture->getOrganizersFixtures($relatedUser) as $organizer) {
+                /** @var \App\Entity\Organizer $organizer */
+                $relatedUser->setOrganizer($organizer);
+
+                $manager->persist($organizer);
+            }
+
+            /**** */
+            $user->setOrganizer($organizer);
             $manager->persist($user);
         }
 
-        /** Events*/
+        /** Events */
         $eventFixture = new EventFixture();
         foreach ($eventFixture->getEventsFixtures() as $event) {
             /** @var \Event $event  */
             $manager->persist($event);
         }
+
+        // /** Organizers */
+        // $organizerFixture = new OrganizerFixture;
+
+        // /** @var \App\Entity\User $relatedUser */
+        // $relatedUser = (new UserFixture())->getUsersFixtures()[0];
+
+        // foreach ($organizerFixture->getOrganizersFixtures($relatedUser) as $organizer) {
+        //     /** @var \App\Entity\Organizer $organizer */
+        //     $relatedUser->setOrganizer($organizer);
+
+        //     $manager->persist($organizer);
+        // }
 
         /**Flush */
         $manager->flush();
