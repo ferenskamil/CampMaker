@@ -8,10 +8,8 @@ class EventFixture
 {
     public function getEventsFixtures() : array
     {
-        $eventsData = $this->getEventsData();
-
         $eventsArrOfEntities = [];
-        foreach ($eventsData as $data) {
+        foreach ($this->getEventsData() as $data) {
             $event = new Event();
             $event->setTitle($data['title']);
             $event->setTermFrom($data['termFrom']);

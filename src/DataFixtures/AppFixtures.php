@@ -13,20 +13,17 @@ class AppFixtures extends Fixture
     {
         /**Users */
         $userFixture = new UserFixture ;
-        $usersFixtures = $userFixture->getUsersFixtures();
-        foreach ($usersFixtures as $user) {
+        foreach ($userFixture->getUsersFixtures() as $user) {
             /** @var \User $user */
             $manager->persist($user);
         }
 
         /** Events*/
         $eventFixture = new EventFixture();
-        $eventsFixtures = $eventFixture->getEventsFixtures();
-        foreach ($eventsFixtures as $event) {
+        foreach ($eventFixture->getEventsFixtures() as $event) {
             /** @var \Event $event  */
             $manager->persist($event);
         }
-
 
         /**Flush */
         $manager->flush();
