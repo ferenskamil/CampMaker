@@ -36,6 +36,7 @@ class AppFixtures extends Fixture
         foreach ($organizerFixture->getOrganizersFixtures() as $organizer) {
             /** @var \App\Entity\Organizer $organizer */
             $adminFixture->setOrganizer($organizer);
+            $adminFixture->setRoles(['ROLE_ORGANIZER']);
             $manager->persist($organizer);
         }
 
