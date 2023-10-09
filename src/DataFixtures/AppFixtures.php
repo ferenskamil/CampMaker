@@ -45,6 +45,13 @@ class AppFixtures extends Fixture
             $manager->persist($event);
         }
 
+        /** Trip Registrations */
+        $tripRegistrationFixture = new TripRegistrationFixture();
+        foreach ($tripRegistrationFixture->getFixtures() as $fixture) {
+            /** @var \App\Entity\TripRegistration $fixture */
+            $manager->persist($fixture);
+        }
+
         /**Flush */
         $manager->flush();
     }
