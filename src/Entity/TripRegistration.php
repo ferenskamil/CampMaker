@@ -29,6 +29,9 @@ class TripRegistration
     #[ORM\Column(nullable: true)]
     private ?bool $acceptanceOfStatement = null;
 
+    #[ORM\ManyToOne(inversedBy: 'tripRegistrations')]
+    private ?Event $event = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class TripRegistration
     public function setAcceptanceOfStatement(?bool $acceptanceOfStatement): static
     {
         $this->acceptanceOfStatement = $acceptanceOfStatement;
+
+        return $this;
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): static
+    {
+        $this->event = $event;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EventRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,6 +36,14 @@ class Event
 
     #[ORM\ManyToOne(inversedBy: 'events')]
     private ?Organizer $organizer = null;
+
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: TripRegistration::class)]
+    private Collection $tripRegistrations;
+
+    public function __construct()
+    {
+        $this->tripRegistrations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +130,36 @@ class Event
     public function setOrganizer(?Organizer $organizer): static
     {
         $this->organizer = $organizer;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TripRegistration>
+     */
+    public function getTripRegistrations(): Collection
+    {
+        return $this->tripRegistrations;
+    }
+
+    public function addTripRegistration(TripRegistration $tripRegistration): static
+    {
+        if (!$this->tripRegistrations->contains($tripRegistration)) {
+            $this->tripRegistrations->add($tripRegistration);
+            $tripRegistration->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTripRegistration(TripRegistration $tripRegistration): static
+    {
+        if ($this->tripRegistrations->removeElement($tripRegistration)) {
+            // set the owning side to null (unless already changed)
+            if ($tripRegistration->getEvent() === $this) {
+                $tripRegistration->setEvent(null);
+            }
+        }
 
         return $this;
     }
