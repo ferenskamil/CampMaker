@@ -13,6 +13,7 @@ class AppFixtures extends Fixture
     {
         global $adminFixture;
         global $exampleOrganizer;
+        global $exampleEvent;
 
         /**Users */
         $userFixture = new UserFixture ;
@@ -43,12 +44,16 @@ class AppFixtures extends Fixture
             /** @var \App\Entity\Event $event  */
             $event->setOrganizer($exampleOrganizer);
             $manager->persist($event);
+
+            /** Set global value for future use */
+            $exampleEvent = $event;
         }
 
         /** Trip Registrations */
         $tripRegistrationFixture = new TripRegistrationFixture();
         foreach ($tripRegistrationFixture->getFixtures() as $fixture) {
             /** @var \App\Entity\TripRegistration $fixture */
+            $fixture->setEvent($exampleEvent);
             $manager->persist($fixture);
         }
 
