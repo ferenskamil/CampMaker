@@ -14,7 +14,7 @@
     </div>
     <p>{{ event.description }}</p>
     <br>
-    <a href="{{ path('trip_registration') }}">
+    <a href="{{ path('trip_registration', { 'id': event.id }) }}">
         <button class="btn btn-primary">Zapisz się</button>
     </a>
 </div>
