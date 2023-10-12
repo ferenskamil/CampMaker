@@ -4,6 +4,24 @@
 
 {% block body %}
 <div class="container">
-    <p>Hello World</p>
+    <h2>Zapisz swoje dziecko</h2>
+    <div>
+        <div class="row">
+            <p><b>Nazwa wydarzenia: </b> Jakaś tam nazwa</p>
+        </div>
+    </div>
+
+    <div>
+        {{ form_start(form) }}
+        {{ form_row(form.participant_name) }}
+        {{ form_row(form.participant_surname)}}
+        {{ form_row(form.birth_date)}}
+        {{ form_row(form.parent_phone)}}
+        {{ form_row(form.acceptance_of_statement)}}
+
+        <button type="submit" class="btn btn-primary mt-3">Zapisz na wyjazd</button>
+        {{ form_end(form) }}
+
+    </div>
 </div>
 {% endblock %}
